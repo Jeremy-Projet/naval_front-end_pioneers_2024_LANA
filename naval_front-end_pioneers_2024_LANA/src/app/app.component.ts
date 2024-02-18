@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {WebsocketService} from './services/web-socket.service'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'naval_front-end_pioneers_2024_LANA';
+
 }

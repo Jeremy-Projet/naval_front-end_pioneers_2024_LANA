@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/* Ici on met les styles général du projet : exemple le margin le padding de certaine balise qui font n'importe quoi */
+p {
+    margin: 0;
+    padding: 0;
+}
