@@ -1,0 +1,24 @@
+<!-- Ici on se concentre sur le placement des différente bric de l'app, on ne met rien d'autre que les balises et des div -->
+<div id="main">
+  <div id="A">
+    <app-bandeau-equipe></app-bandeau-equipe>
+  </div>
+  <div id="B">
+    <div id="E">
+      <app-parametrage class="conteneur"> </app-parametrage>
+      <app-detail-mobile class="conteneur"> </app-detail-mobile>
+    </div>
+    <div id="F">
+      <app-representation-mobiles class="conteneur"> </app-representation-mobiles>
+      <app-diagramme-densite class="conteneur"> </app-diagramme-densite>
+    </div>
+  </div>
+  <div id="C">
+    <app-tableau></app-tableau>
+  </div>
+  <div id="D">
+    <app-regie-video></app-regie-video>
+  </div>
+  <app-web-socket></app-web-socket>
+  <router-outlet></router-outlet>
+</div>
