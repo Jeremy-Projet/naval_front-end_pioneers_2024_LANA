@@ -1,0 +1,56 @@
+<div style="width: 95%; height: 95%; background-color: beige; border-radius: 15px; display: flex; align-items: center; flex-direction: column; justify-content: center;">
+    <H1 style="margin: 0;">Détail mobile</H1>
+    <form style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+        <div style="display: flex; width: 80%; height: 100%; flex-direction: column; margin-left: 10%;">
+            <div>
+                <label for="">Environnement :</label>
+                <input type="text" style="width: 10%;" ngModel required>
+            </div>
+            <div>
+                <label for="">Forme :</label>
+                <input type="text" style="width: 10%;" ngModel required>
+            </div>
+        </div>
+        <div style="display: flex; width: 100%; flex-direction: column; height: 100%;">
+            <div style="display: flex; width: 80%; height: 100%; align-items: center; margin-left: 10%;">
+                <div style="display: flex; flex-direction: column;">
+                    <div>
+                        <label for="">Position X :</label>
+                        <input type="text" style="width: 10%;" ngModel required>
+                    </div>
+                    <div>
+                        <label for="">Position Y :</label>
+                        <input type="text" style="width: 10%;" ngModel required>
+                    </div>
+                    <div>
+                        <label for="">Position Z :</label>
+                        <input type="text" style="width: 10%;" ngModel required>
+                    </div>
+                    <div>
+                        <label for="">Vitesse (m/s) :</label>
+                        <input type="text" style="width: 5%;" ngModel required>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="">Heading (deg) :</label>
+                        <input type="text" style="width: 10%;" ngModel required>
+                    </div>
+                    <div>
+                        <label for="">Orientation (deg) :</label>
+                        <input type="text" style="width: 10%;" ngModel required>
+                    </div>
+                    <div>
+                        <label for="">Vitesse de rotation (deg/s) :</label>
+                        <input type="text" style="width: 10%;" ngModel required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; display: flex; justify-content: flex-end; height: auto; align-items: end; height: 100%;">
+            <button type="submit" style="height: 100%; margin-right: 10%;">Mettre à jour</button>
+        </div>
+    </form>
+</div>
+
+
