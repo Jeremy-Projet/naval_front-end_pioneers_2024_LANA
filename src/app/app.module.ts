@@ -10,6 +10,8 @@ import { DiagrammeDensiteComponent } from './components/diagramme-densite/diagra
 import { TableauComponent } from './components/tableau/tableau.component';
 import { RegieVideoComponent } from './components/regie-video/regie-video.component';
 import { WebSocketComponent } from './components/web-socket/web-socket.component';
+import { ParametrageFormulaireComponent } from './components/parametrage-formulaire/parametrage-formulaire.component';
+import { DetailMobileFormulaireComponent } from './components/detail-mobile-formulaire/detail-mobile-formulaire.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { WebSocketComponent } from './components/web-socket/web-socket.component
     DiagrammeDensiteComponent,
     TableauComponent,
     RegieVideoComponent,
-    WebSocketComponent
+    WebSocketComponent,
+    ParametrageFormulaireComponent,
+    DetailMobileFormulaireComponent
   ],
   imports: [
     BrowserModule,
