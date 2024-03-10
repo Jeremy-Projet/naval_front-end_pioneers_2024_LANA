@@ -12,6 +12,7 @@ import { RegieVideoComponent } from './components/regie-video/regie-video.compon
 import { WebSocketComponent } from './components/web-socket/web-socket.component';
 import { ParametrageFormulaireComponent } from './components/parametrage/parametrage-formulaire/parametrage-formulaire.component';
 import { DetailMobileFormulaireComponent } from './components/detail-mobile/detail-mobile-formulaire/detail-mobile-formulaire.component';
+import { CercleTrigoComponent } from './components/representation-mobiles/cercle-trigo/cercle-trigo.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DetailMobileFormulaireComponent } from './components/detail-mobile/deta
     RegieVideoComponent,
     WebSocketComponent,
     ParametrageFormulaireComponent,
-    DetailMobileFormulaireComponent
+    DetailMobileFormulaireComponent,
+    CercleTrigoComponent
   ],
   imports: [
     BrowserModule,

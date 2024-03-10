@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DetailMobileFormulaireComponent } from '../detail-mobile-formulaire/detail-mobile-formulaire.component';
+import { DetailMobileFormulaireComponent } from './detail-mobile-formulaire/detail-mobile-formulaire.component';
 
 
 
