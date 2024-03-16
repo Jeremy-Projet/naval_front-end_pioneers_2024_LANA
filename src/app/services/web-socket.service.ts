@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root'
@@ -20,23 +19,4 @@ export class WebsocketService {
       console.log('Connexion WebSocket fermée.');
     };
   }
-
-  /*
-  constructor() { }
-
-  connect(url: string): void {
-    
-    this.socket$ = webSocket(url);
-
-    this.socket$.subscribe(
-      (message) => {
-        console.log('Message reçu:', message);
-      }
-    );
-  }
-
-  getMobiles(url: string) {
-    this.socket = webSocket(url);
-  }
-*/
 }

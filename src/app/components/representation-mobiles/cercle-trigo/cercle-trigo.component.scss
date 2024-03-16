@@ -1,0 +1,35 @@
+.circle {
+    width: 400px;
+    height: 400px;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: relative;
+}
+.division {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: bottom;
+}
+.zone {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: left;
+}
+.point {
+    width: 4px;
+    height: 4px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+}
+  
+.mobile {
+    position: absolute;
+    width: 20px; /* Ajustez la taille selon vos besoins */
+    height: 20px; /* Ajustez la taille selon vos besoins */
+    background-color: red; /* Ajustez la couleur selon vos besoins */
+    border-radius: 50%; /* Pour créer un cercle */
+    transition: all 0.5s ease; /* Animation de transition */
+}

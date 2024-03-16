@@ -17,7 +17,8 @@ export class RepresentationMobilesComponent implements OnInit {
     this.websocketService.socket.onmessage = (event) => {
       const mobile = JSON.parse(event.data) as MobileObject;
       this.mobileData.push(mobile);
-      console.log("mobile : ", mobile)
+      console.log("mobile : ", mobile);
+      
     };
   }
   handleZoneClick(zoneId: number) {

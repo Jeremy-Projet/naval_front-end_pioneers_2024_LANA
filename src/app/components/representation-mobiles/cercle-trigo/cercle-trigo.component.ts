@@ -1,4 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import Chart, { ChartConfiguration } from 'chart.js/auto';
+import { WebsocketService } from "../../../services/web-socket.service"
+import { MobileObject } from '../MobileObjectInterface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cercle-trigo',
@@ -6,69 +10,90 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./cercle-trigo.component.scss']
 })
 export class CercleTrigoComponent implements OnInit {
-  @ViewChild('cercleTrigoCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
-  context: CanvasRenderingContext2D | null = null;
+  
+  @Input() mobiles: MobileObject[] = [];
 
-  zones: { id: string, startAngle: number, endAngle: number }[] = [];
+  nbrSectors = 12; // Nombre de secteurs dans le cercle
+  circles = 7; // Nombre de cercles
+  zonesPerCircle = this.nbrSectors; // Nombre de zones par cercle
+  totalZones = this.nbrSectors * this.circles; // Nombre total de zones dans chaque cercle
+  circleIds: string[][] = []; // Tableau pour stocker les IDs des zones de chaque cercle
+  animationInterval: any; // Intervalle d'animation
 
-  constructor() { }
+  constructor(private websocketService: WebsocketService) { }
 
   ngOnInit(): void {
-    this.context = this.canvasRef.nativeElement.getContext('2d');
-    if (this.context) {
-      this.dessinerCercleTrigo();
-    } else {
-      console.error("Impossible d'obtenir le contexte du canvas.");
-    }
-  }
+    // Récupérer les données des mobiles depuis le service WebSocket
+    this.websocketService.socket.onmessage = (event) => {
+      const mobile = JSON.parse(event.data) as MobileObject;
+      this.mobiles.push(mobile);
+      //console.log("mobile : ", mobile);
+    };
 
-  dessinerCercleTrigo() {
-    if (!this.context) return;
-
-    const centerX = this.canvasRef.nativeElement.width / 2;
-    const centerY = this.canvasRef.nativeElement.height / 2;
-    const radius = Math.min(centerX, centerY) - 10;
-
-    // Diviser le cercle en zones
-    const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8000', '#8000ff', '#80ff00', '#0080ff', '#00ff80', '#ff0080'];
-    const angleStep = (2 * Math.PI) / colors.length;
-
-    for (let i = 0; i < colors.length; i++) {
-      const startAngle = i * angleStep;
-      const endAngle = (i + 1) * angleStep;
-      const id = `zone_${i + 1}`;
-      this.zones.push({ id, startAngle, endAngle });
-
-      // Dessiner la zone
-      this.context.fillStyle = colors[i];
-      this.context.beginPath();
-      this.context.moveTo(centerX, centerY);
-      this.context.arc(centerX, centerY, radius, startAngle, endAngle);
-      this.context.lineTo(centerX, centerY);
-      this.context.fill();
-    }
-  }
-
-  onCanvasClick(event: MouseEvent) {
-    const rect = this.canvasRef.nativeElement.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const centerX = this.canvasRef.nativeElement.width / 2;
-    const centerY = this.canvasRef.nativeElement.height / 2;
-    const radius = Math.min(centerX, centerY) - 10;
-    const distanceFromCenter = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-
-    if (distanceFromCenter <= radius) {
-      const angle = Math.atan2(y - centerY, x - centerX);
-      const degrees = (angle * 180) / Math.PI;
-
-      // Trouver la zone cliquée
-      for (const zone of this.zones) {
-        if (degrees >= zone.startAngle * 180 / Math.PI && degrees <= zone.endAngle * 180 / Math.PI) {
-          console.log('Zone cliquée:', zone.id);
-          break;
-        }
+    // Générer les IDs pour chaque cercle
+    for (let circle = 1; circle <= this.circles; circle++) {
+      const circleZoneIds: string[] = [];
+      for (let i = 1; i <= this.nbrSectors; i++) {
+        circleZoneIds.push(`Circle-${circle}-Zone-${i}`);
       }
+      this.circleIds.push(circleZoneIds);
+      console.log(`${this.circleIds}`)
     }
+
+    // Initialiser le graphique
+    this.initializeChart();
+  }
+
+  // Initialiser le graphique
+  initializeChart(): void {
+    // Définir les données pour les graphiques
+    const datasets = this.circleIds.map(() => {
+      return {
+        backgroundColor: "white",
+        borderColor: 'black',
+        data: Array.from({ length: this.zonesPerCircle }, () => 1)
+      };
+    });
+
+    const data: any = {
+      datasets: datasets
+    };
+
+    // Configuration des graphiques
+    const config: ChartConfiguration<'pie'> = {
+      type: 'pie',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: false
+          }
+        },
+        animation: false // Désactiver l'animation pour un meilleur rendu
+      }
+    };
+
+    // Initialiser les graphiques
+    const canvas: any = document.getElementById('circleChart');
+    const ctx = canvas.getContext('2d');
+    const myChart = new Chart(ctx, config);
+
+    // Ajouter un gestionnaire d'événements de clic à l'élément de graphique
+    canvas.addEventListener('click', (event:any) => {
+      const boundingRect = canvas.getBoundingClientRect();
+      const x = event.clientX - boundingRect.left;
+      const y = event.clientY - boundingRect.top;
+      const sectorSize = 2 * Math.PI / this.nbrSectors;
+      const angle = Math.atan2(y - boundingRect.height / 2, x - boundingRect.width / 2);
+      let sector = Math.floor((angle + Math.PI) / sectorSize) % this.nbrSectors;
+      const circle = Math.floor(Math.sqrt(Math.pow(x - boundingRect.width / 2, 2) + Math.pow(y - boundingRect.height / 2, 2)) / (boundingRect.width / (2 * this.circles)));
+      const zoneId = this.circleIds[circle][sector];
+      console.log('Zone cliquée:', zoneId);
+      // Vous pouvez faire ce que vous voulez avec l'ID de la zone ici
+    });
   }
 }
