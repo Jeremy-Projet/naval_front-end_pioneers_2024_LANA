@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService {
+  public socket: WebSocket;
+
 
   private socket$!: WebSocketSubject<any>;
   public socket: WebSocket;
@@ -22,6 +23,7 @@ export class WebsocketService {
       console.log('Connexion WebSocket fermée.');
     };
 
+
   }
 
   connect(url: string): void {
@@ -33,5 +35,6 @@ export class WebsocketService {
         console.log('Message reçu:', message);
       }
     );
+
   }
 }

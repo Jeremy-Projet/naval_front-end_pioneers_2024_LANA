@@ -16,6 +16,7 @@ export interface MobileObject {
 }
 
 export interface Mobiles {
+
   id: number;
   displayId: string;
   environment: string;
@@ -46,4 +47,15 @@ export interface Mobiles {
   };
 }
 
+
+=======
+    displayId: number;
+    x: number;
+    y: number;
+    z: number;
+    size: number;
+    color: string;
+    shape: 'triangle' | 'square' | 'losange' | 'circle';
+    kinematics: Kinematics;
+}
 
