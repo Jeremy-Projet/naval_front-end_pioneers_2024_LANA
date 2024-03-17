@@ -7,11 +7,33 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 })
 export class RegieVideoComponent implements OnInit{
   constructor(private elementRef: ElementRef) {}
-  videoUrl:string = ''
+  videosUrl: string[] = [
+    "http://localhost:7001/video_1.mp4",
+    "http://localhost:7001/video_2.mp4",
+    "http://localhost:7001/video_3.mp4",
+    "http://localhost:7001/video_4.mp4",
+    "http://localhost:7001/video_5.mp4",
+    "http://localhost:7001/video_6.mp4",
+    "http://localhost:7001/video_7.mp4",
+    "http://localhost:7001/video_8.mp4",
+    "http://localhost:7001/video_9.mp4",
+    "http://localhost:7001/video_10.mp4",
+    "http://localhost:7001/video_11.mp4",
+    "http://localhost:7001/video_12.mp4",
+    "http://localhost:7001/video_13.mp4",
+    "http://localhost:7001/video_14.mp4",
+    "http://localhost:7001/video_15.mp4",
+    "http://localhost:7001/video_16.mp4",
+    "http://localhost:7001/video_17.mp4",
+    "http://localhost:7001/video_18.mp4",
+    "http://localhost:7001/video_19.mp4",
+    "http://localhost:7001/video_20.mp4",
+
+  ];
   
   ngOnInit(): void {
-      this.videoUrl = "http://localhost:7001/video_1.mp4";
-      const video = this.elementRef.nativeElement.querySelector('video');
+      
+      const video = this.elementRef.nativeElement.querySelector('#intersectionTarget').querySelector('video');
       const options = {
         root: null,
         rootMargin: '0px',
