@@ -16,13 +16,34 @@ export interface MobileObject {
 }
 
 export interface Mobiles {
-    displayId: number;
-    x: number;
-    y: number;
-    z: number;
-    size: number;
-    color: string;
-    shape: 'triangle' | 'square' | 'losange' | 'circle';
-    kinematics: Kinematics;
+  id: number;
+  displayId: string;
+  environment: string;
+  creationTimestampMs: number;
+  updateTimestampMs: number;
+  kinematics: Kinematics;
+  shape: 'triangle' | 'square' | 'losange' | 'circle';
+  color: string;
+  extraMobileData1: {
+    data1: number;
+    data2: number;
+    data3: string;
+    data4: number;
+    data5: number;
+    data6: string;
+    data7: number;
+    data8: boolean;
+  };
+  extraMobileData2: {
+    data1: number;
+    data2: number;
+    data3: string;
+    data4: number;
+    data5: number;
+    data6: string;
+    data7: number;
+    data8: boolean;
+  };
 }
+
 

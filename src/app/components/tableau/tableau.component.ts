@@ -8,18 +8,31 @@ import { Mobiles, MobileObject } from '../representation-mobiles/MobileObjectInt
   styleUrls: ['./tableau.component.scss']
 })
 
+export class TableauComponent implements OnInit {
+  mobiles: Mobiles[] = [];
 
-export class TableauComponent implements OnInit{
+  constructor(private websocketService: WebsocketService) {}
 
-  constructor (private websocketService: WebsocketService) {
-
-  }
   ngOnInit(): void {
-    // Récupérer les données des mobiles depuis le service WebSocket
     this.websocketService.socket.onmessage = (event) => {
-      const mobile = JSON.parse(event.data) as MobileObject;
-      console.log(mobile);
-    }
+      const mobileObject = JSON.parse(event.data) as MobileObject;
+      if (mobileObject.eventType === 'INITIAL_LOAD') {
+        this.mobiles = Object.values(mobileObject.mobiles);
+      }
+    };
   }
 
+  formatDate(timestamp: number): string {
+    // Créez un objet Date à partir du timestamp
+    const date = new Date(timestamp);
+    // Utilisez les méthodes de l'objet Date pour obtenir les composants de date souhaités
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Les mois commencent à partir de zéro, donc ajoutez 1
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    // Construisez la chaîne de date formatée
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  }
 }
