@@ -7,7 +7,6 @@ import { Mobiles, MobileObject } from '../representation-mobiles/MobileObjectInt
   templateUrl: './tableau.component.html',
   styleUrls: ['./tableau.component.scss']
 })
-
 export class TableauComponent implements OnInit {
   mobiles: Mobiles[] = [];
 
@@ -18,6 +17,16 @@ export class TableauComponent implements OnInit {
       const mobileObject = JSON.parse(event.data) as MobileObject;
       if (mobileObject.eventType === 'INITIAL_LOAD') {
         this.mobiles = Object.values(mobileObject.mobiles);
+      } else if (mobileObject.eventType === 'MOBILES_UPDATED') {
+        for (const id in mobileObject.mobiles) {
+          if (mobileObject.mobiles.hasOwnProperty(id)) {
+            const updatedMobile = mobileObject.mobiles[id];
+            const index = this.mobiles.findIndex(mobile => mobile.id === updatedMobile.id);
+            if (index !== -1) {
+              this.mobiles[index] = { ...this.mobiles[index], ...updatedMobile };
+            }
+          }
+        }
       }
     };
   }

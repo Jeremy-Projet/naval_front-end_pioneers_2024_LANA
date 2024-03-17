@@ -30,7 +30,7 @@ export class WebsocketService {
 
     this.socket$.subscribe(
       (message) => {
-        //console.log('Message reçu:', message);
+        console.log('Message reçu:', message);
       }
     );
   }
