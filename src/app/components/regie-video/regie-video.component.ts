@@ -33,7 +33,7 @@ export class RegieVideoComponent implements OnInit{
   
   ngOnInit(): void {
       
-      const video = this.elementRef.nativeElement.querySelector('#intersectionTarget').querySelector('video');
+      const videos: NodeListOf<HTMLVideoElement> = this.elementRef.nativeElement.querySelectorAll('#intersectionTarget video')
       const options = {
         root: null,
         rootMargin: '0px',
@@ -45,14 +45,14 @@ export class RegieVideoComponent implements OnInit{
         if (entry.isIntersecting) {
           // Element is visible in the viewport
           console.log('video jouée');
-          video.muted = true;
-          video.play();
-          // Faire quelque chose lorsque l'élément est visible
+          videos.forEach(video => {
+            video.muted = true;
+            video.muted = false;
+            video.play();
+          });
+        
         } else {
-          // Element is not visible in the viewport
-          console.log('vidéo mise en pause');
-          video.pause();
-          // Faire quelque chose lorsque l'élément n'est pas visible
+
         }
       });
     }, options);
