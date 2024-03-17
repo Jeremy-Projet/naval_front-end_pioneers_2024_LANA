@@ -1,2 +1,7 @@
 {
+
+    "workbench.settings.editor": "json",
+    "workbench.settings.useSplitJSON": true,
+    "workbench.settings.openDefaultSettings": true
+
 }
