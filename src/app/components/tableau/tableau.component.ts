@@ -7,8 +7,12 @@ import { Mobiles, MobileObject } from '../representation-mobiles/MobileObjectInt
   templateUrl: './tableau.component.html',
   styleUrls: ['./tableau.component.scss']
 })
+
 export class TableauComponent implements OnInit {
   mobiles: Mobiles[] = [];
+  columnName: string = '';
+  sortOrder: 'asc' | 'desc' = 'asc';
+  searchText: string = '';
 
   constructor(private websocketService: WebsocketService) {}
 
@@ -44,4 +48,27 @@ export class TableauComponent implements OnInit {
     // Construisez la chaîne de date formatée
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
   }
+
+  sortByColumn(column: string): void {
+    if (this.columnName === column) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.columnName = column;
+      this.sortOrder = 'asc';
+    }
+  }
+
+  get filteredMobiles(): Mobiles[] {
+    if (!this.searchText) {
+      return this.mobiles;
+    }
+
+    // Filtrage des mobiles en fonction du texte de recherche
+    return this.mobiles.filter(mobile =>
+      Object.keys(mobile).some(key =>
+        mobile[key as keyof Mobiles] && mobile[key as keyof Mobiles].toString().toLowerCase().includes(this.searchText.toLowerCase())
+      )
+    );
+  }
+
 }
