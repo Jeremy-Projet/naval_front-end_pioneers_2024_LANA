@@ -39,29 +39,22 @@ export class RegieVideoComponent implements OnInit{
         rootMargin: '0px',
         threshold: 0.5
       }
-
-      const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+       const observer = new IntersectionObserver((entries, observer) => {
+       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Element is visible in the viewport
+          //lorsque la div contenant les videos est visible
           console.log('video jouée');
           videos.forEach(video => {
             video.muted = true;
-            video.muted = false;
             video.play();
-          });
-        
-        } else {
-
-        }
-      });
-    }, options);
-
-    // Récupérer l'élément cible
-    const target = this.elementRef.nativeElement.querySelector('#intersectionTarget');
-    
-
-    // Commencer à observer l'élément cible
+           });
+         } else {
+            //ne rien faire
+         }
+       });
+     }, options);
+     //Récupérer l'élément cible
+    const target = this.elementRef.nativeElement.querySelector('#divVideo');
+     //Commencer à observer l'élément cible
     observer.observe(target);
-  }
-}
+}}
