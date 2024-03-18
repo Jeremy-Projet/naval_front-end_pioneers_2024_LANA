@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "naval_front-end_pioneers_2024_LANA:build:production"
+              "buildTarget": "naval_front-end_pioneers_2024_LANA:build:production"
             },
             "development": {
-              "browserTarget": "naval_front-end_pioneers_2024_LANA:build:development"
+              "buildTarget": "naval_front-end_pioneers_2024_LANA:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "naval_front-end_pioneers_2024_LANA:build"
+            "buildTarget": "naval_front-end_pioneers_2024_LANA:build"
           }
         },
         "test": {
