@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { WebsocketService } from 'src/app/services/web-socket.service';
-import { Mobiles, MobileObject } from '../representation-mobiles/MobileObjectInterface';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tableau',
   templateUrl: './tableau.component.html',
   styleUrls: ['./tableau.component.scss']
 })
+
 
 export class TableauComponent implements OnInit {
   mobiles: Mobiles[] = [];
@@ -70,5 +69,6 @@ export class TableauComponent implements OnInit {
       )
     );
   }
+
 
 }

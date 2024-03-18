@@ -12,6 +12,6 @@ export class WebSocketComponent {
   constructor(private websocketService: WebsocketService) {}
 
   ngOnInit(): void {
-    this.websocketService.connect('ws://localhost:7000/ws/simulation/sitac');
+    //this.websocketService.connect('ws://localhost:7000/ws/simulation/sitac');
   }
 }

@@ -12,8 +12,13 @@ import { RegieVideoComponent } from './components/regie-video/regie-video.compon
 import { WebSocketComponent } from './components/web-socket/web-socket.component';
 import { ParametrageFormulaireComponent } from './components/parametrage/parametrage-formulaire/parametrage-formulaire.component';
 import { DetailMobileFormulaireComponent } from './components/detail-mobile/detail-mobile-formulaire/detail-mobile-formulaire.component';
+
 import { SortByPipe } from 'src/app/pipe/sortPipe';
 import { FormsModule } from '@angular/forms';
+
+import { CercleTrigoComponent } from './components/representation-mobiles/cercle-trigo/cercle-trigo.component';
+import { MobilesComponent } from './components/representation-mobiles/mobiles/mobiles.component';
+
 
 @NgModule({
   declarations: [
@@ -28,12 +33,17 @@ import { FormsModule } from '@angular/forms';
     RegieVideoComponent,
     WebSocketComponent,
     ParametrageFormulaireComponent,
-    DetailMobileFormulaireComponent
+    DetailMobileFormulaireComponent,
+    CercleTrigoComponent,
+    MobilesComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
