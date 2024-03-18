@@ -12,9 +12,12 @@ import { RegieVideoComponent } from './components/regie-video/regie-video.compon
 import { WebSocketComponent } from './components/web-socket/web-socket.component';
 import { ParametrageFormulaireComponent } from './components/parametrage/parametrage-formulaire/parametrage-formulaire.component';
 import { DetailMobileFormulaireComponent } from './components/detail-mobile/detail-mobile-formulaire/detail-mobile-formulaire.component';
+import { SortByPipe } from 'src/app/pipe/sortPipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
+    SortByPipe,
     AppComponent,
     BandeauEquipeComponent,
     ParametrageComponent,
@@ -29,7 +32,8 @@ import { DetailMobileFormulaireComponent } from './components/detail-mobile/deta
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
