@@ -1,7 +1,21 @@
-h1 {
-    margin: 0;
+/* Ajoutez ce CSS dans votre fichier scss */
+
+/* Définissez la couleur de fond pour les cellules th */
+table th {
+  background-color: #C4E4F4; /* Couleur d'arrière-plan souhaitée */
 }
 
-th {
-    border-style: solid;
+/* Assurez-vous que les bordures sont visibles pour les cellules th */
+table th {
+  border-style: solid;
+}
+
+/* Assurez-vous que les autres styles de base pour les tables sont préservés */
+table {
+  display: block;
+}
+
+/* Assurez-vous que les autres styles de base pour les titres h1 sont préservés */
+h1 {
+  margin: 0;
 }

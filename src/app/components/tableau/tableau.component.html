@@ -1,27 +1,51 @@
 <div style="width: 100%; height: 100%; background-color: red; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <h1 style="width: 95%; height: 10%; display: flex; align-items: center;"> Tableau </h1>
-    <div style="width: 95%; background-color: #00ffff; height: 90%; overflow: scroll; display: flex; justify-content: center; flex-direction: column;">
-        <table style="width: 2000px; height: 100%;">
-            <thead style="height: 20%;">
-                <tr style="height: 20%;">
-                    <th>id</th>
-                    <th>créé  le</th>
-                    <th>mise à jour</th>
-                    <th>env</th>
-                    <th>color</th>
-                    <th>forme</th>
-                    <th>pos x</th>
-                    <th>pos y</th>
-                    <th>pos z</th>
-                    <th>heading</th>
-                    <th>orientation</th>
-                    <th>vitesse rot</th>
-                    <th>data 1</th>
-                    <th>data 2</th>
-                    <th>data 3</th>
-                    <th>data 4</th>
-                </tr>
-            </thead>
-        </table>
+  <h1 style="width: 95%; height: 10%; display: flex; align-items: center;"> Tableau </h1>
+  <div style="width: 95%; background-color: #00ffff; height: 90%; overflow: auto;">
+    <div>
+      <input type="text" placeholder="Rechercher..." [(ngModel)]="searchText" />
     </div>
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead style="height: 20px;">
+      <tr>
+        <th (click)="sortByColumn('id')" style="cursor: pointer;">ID</th>
+        <th (click)="sortByColumn('creationTimestampMs')" style="cursor: pointer;">Créé le</th>
+        <th (click)="sortByColumn('updateTimestampMs')" style="cursor: pointer;">Mise à jour</th>
+        <th (click)="sortByColumn('environment')" style="cursor: pointer;">Env</th>
+        <th (click)="sortByColumn('color')" style="cursor: pointer;">Color</th>
+        <th (click)="sortByColumn('shape')" style="cursor: pointer;">Forme</th>
+        <th (click)="sortByColumn('kinematics.xM')" style="cursor: pointer;">Pos X</th>
+        <th (click)="sortByColumn('kinematics.yM')" style="cursor: pointer;">Pos Y</th>
+        <th (click)="sortByColumn('kinematics.zM')" style="cursor: pointer;">Pos Z</th>
+        <th (click)="sortByColumn('kinematics.headingRad')" style="cursor: pointer;">Heading</th>
+        <th (click)="sortByColumn('kinematics.orientationRad')" style="cursor: pointer;">Orientation</th>
+        <th (click)="sortByColumn('kinematics.spinningSpeedRadS')" style="cursor: pointer;">Vitesse Rot</th>
+        <th (click)="sortByColumn('extraMobileData1.data1')" style="cursor: pointer;">Data 1</th>
+        <th (click)="sortByColumn('extraMobileData1.data2')" style="cursor: pointer;">Data 2</th>
+        <th (click)="sortByColumn('extraMobileData1.data3')" style="cursor: pointer;">Data 3</th>
+        <th (click)="sortByColumn('extraMobileData1.data4')" style="cursor: pointer;">Data 4</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let mobile of mobiles | sortBy:columnName:sortOrder">
+        <td>{{ mobile.id }}</td>
+        <td>{{ formatDate(mobile.creationTimestampMs) }}</td>
+        <td>{{ formatDate(mobile.updateTimestampMs) }}</td>
+        <td>{{ mobile.environment }}</td>
+        <td>{{ mobile.color }}</td>
+        <td>{{ mobile.shape }}</td>
+        <td>{{ mobile.kinematics.xM }}</td>
+        <td>{{ mobile.kinematics.yM }}</td>
+        <td>{{ mobile.kinematics.zM }}</td>
+        <td>{{ mobile.kinematics.headingRad }}</td>
+        <td>{{ mobile.kinematics.orientationRad }}</td>
+        <td>{{ mobile.kinematics.spinningSpeedRadS }}</td>
+        <td>{{ mobile.extraMobileData1.data1 }}</td>
+        <td>{{ mobile.extraMobileData1.data2 }}</td>
+        <td>{{ mobile.extraMobileData1.data3 }}</td>
+        <td>{{ mobile.extraMobileData1.data4 }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
